@@ -33,7 +33,7 @@ func (net *Net) Train(input, target []float64, rate float64) (float64, error)
 
 where input is the input vector, target is the expected result to converge to, rate is learning rate. It returns the average error.
 
-Ask you network to predict and answer:
+* Ask you network to predict and answer:
 
 ```go
 func (net *Net) Predict(input []float64) ([]float64, error)
