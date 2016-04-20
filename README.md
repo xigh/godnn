@@ -1,7 +1,7 @@
 # godnn
 Deep Neural Network package written in Go programming Language
 
-![My image](xigh.github.com/godnn/img/rpsls3.jpg)
+![My image](img/rpsls3.jpg)
 
 # todo
 Make it more configurable (threshold, ...)
