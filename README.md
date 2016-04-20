@@ -21,8 +21,6 @@ import "github.com/xigh/godnn"
 
 ```go
 func Create(topology []uint) (*Net, error)
-
-net, err := dnn.Create([]int{ 6, 12, 2 })
 ```
 
 where parameter to dnn.Create is the topology of your neural network layer (ie the number of neuron per layer). First layer is the input, last layer is the output.
@@ -31,8 +29,6 @@ where parameter to dnn.Create is the topology of your neural network layer (ie t
 
 ```go
 func (net *Net) Train(input, target []float64, rate float64) (float64, error)
-
-dist, err := net.Train(input, target, rate)
 ```
 
 where input is the input vector, target is the expected result to converge to, rate is learning rate. It returns the average error.
@@ -41,8 +37,6 @@ where input is the input vector, target is the expected result to converge to, r
 
 ```go
 func (net *Net) Predict(input []float64) ([]float64, error)
-
-res, err := net.Predict(input)
 ```
 
 It returns the output ...
