@@ -1,6 +1,14 @@
 # godnn
 Deep Neural Network package written in Go programming Language
 
+![My image](xigh.github.com/godnn/img/rpsls3.jpg)
+
+# todo
+Make it more configurable (threshold, ...)
+Make it more scalable
+Make some benchmarks
+Add more examples (train it with MNIST DATABASE)
+
 # license
 Copyright (c) 2016, Philippe Anel
 All rights reserved.
