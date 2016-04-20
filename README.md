@@ -59,7 +59,7 @@ Better doc.
 
 Make it more configurable (threshold function, ...).
 
-Make it more scalable.
+Make it more scalable. Use OpenCL/CUDA.
 
 Make some benchmarks.
 
