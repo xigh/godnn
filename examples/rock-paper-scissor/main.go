@@ -7,8 +7,7 @@ import (
 )
 
 const (
-	eta = 0.15
-	alpha = 0.2
+	rate = 0.15
 	minErr = 0.001
 	maxIter = 100000
 )
@@ -108,11 +107,16 @@ func test(net *dnn.Net) {
 
 func train(net *dnn.Net, min float64, max uint64) uint64 {
 	i := uint64(0)
+	p := 0.0
 	for {
 		if i % 1000 == 0 {
 			fmt.Printf(".")
 		}
 		i += 1
+
+		if i > 0 && i % 5000 == 0 {
+			fmt.Printf("%.2f", p)
+		}
 
 		if i > max {
 			fmt.Printf("\ntoo many iterations\n")
@@ -129,7 +133,7 @@ func train(net *dnn.Net, min float64, max uint64) uint64 {
 				
 				output := eval(a, b)
 				
-				dist, err := net.Train(input, output, eta, alpha)
+				dist, err := net.Train(input, output, rate)
 				if err != nil {
 					log.Fatal(err)
 				}
@@ -139,8 +143,8 @@ func train(net *dnn.Net, min float64, max uint64) uint64 {
 			}
 		}
 
-		avg = 100 * avg / float64(nb)
-		if (avg < min) {
+		p = 100 * avg / float64(nb)
+		if (p < min) {
 			fmt.Printf("\naverage error=%9.5f%%\n", avg)
 			break
 		}

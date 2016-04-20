@@ -61,7 +61,8 @@ func (neuron *Neuron) updateWeight(prevLayer *Layer, rate float64) {
 		tmp := &prevLayer.Neurons[n]
 		conn := &tmp.Conns[neuron.Index]
 
-		Delta := rate * tmp.Output * neuron.gradient + conn.Delta
+		// conn.Delta is too big ... have to read more on this ...
+		Delta := rate * tmp.Output * neuron.gradient + conn.Delta * .2
 		conn.Delta = Delta
 		conn.Weight += Delta
 	}

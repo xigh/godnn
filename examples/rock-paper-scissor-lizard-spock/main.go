@@ -7,8 +7,7 @@ import (
 )
 
 const (
-	eta = 0.45
-	alpha = 0.5
+	rate = 0.45
 	minErr = 0.01
 	maxIter = 100000
 )
@@ -192,7 +191,7 @@ func train(net *dnn.Net, min float64, max uint64) uint64 {
 				
 				output := eval(a, b)
 				
-				dist, err := net.Train(input, output, eta, alpha)
+				dist, err := net.Train(input, output, rate)
 				if err != nil {
 					log.Fatal(err)
 				}
