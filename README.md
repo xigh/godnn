@@ -32,10 +32,10 @@ where parameter to dnn.Create is the topology of your neural network layer (ie t
 ```go
 func (net *Net) Train(input, target []float64, rate float64) (float64, error)
 
-dist, err := net.Train(input, output, eta, alpha)
+dist, err := net.Train(input, target, rate)
 ```
 
-where input is the input vector, output is the expected result to converge to, rate is learning rate. It returns the average error.
+where input is the input vector, target is the expected result to converge to, rate is learning rate. It returns the average error.
 
 4. Ask you network to predict and answer:
 
