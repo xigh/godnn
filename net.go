@@ -65,8 +65,7 @@ func (net *Net) feed(input []float64) (*Layer, error) {
 	return &net.Layers[layerCount - 1], nil
 }
 
-func (net *Net) Train(input []float64, target []float64,
-	eta, alpha float64) (float64, error) {
+func (net *Net) Train(input, target []float64, rate float64) (float64, error) {
 	last, err := net.feed(input)
 	if err != nil {
 		return -1, err
@@ -84,23 +83,25 @@ func (net *Net) Train(input []float64, target []float64,
 		neuron.updateGradient(target[n])
 	}
 
+	// back propagation
 	for l := len(net.Layers) - 2; l > 0; l -= 1 {
 		layer := &net.Layers[l]
 		next := &net.Layers[l + 1]
 
 		for n := range layer.Neurons {
 			neuron := &layer.Neurons[n]
-			neuron.calculateHiddenGradients(next)
+			neuron.deriveGradients(next)
 		}
 	}
 
+	// update weights
 	for l := len(net.Layers) - 2; l > 0; l -= 1 {
 		layer := &net.Layers[l]
 		prev := &net.Layers[l - 1]
 
 		for n := 0; n < len(layer.Neurons) - 1; n += 1 {
 			neuron := &layer.Neurons[n]
-			neuron.updateInputWeights(prev, eta, alpha)
+			neuron.updateWeight(prev, rate)
 		}
   	}
 	

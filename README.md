@@ -4,7 +4,7 @@ Deep Neural Network package written in Go programming Language
 Installation
 -----------
 
-	go get github.com/syndtr/goleveldb/leveldb
+	go get github.com/xigh/godnn
 	
 Documentation
 -----------
@@ -20,6 +20,8 @@ import "github.com/xigh/godnn"
 2. Create a network instance
 
 ```go
+func Create(topology []uint) (*Net, error)
+
 net, err := dnn.Create([]int{ 6, 12, 2 })
 ```
 
@@ -28,14 +30,18 @@ where parameter to dnn.Create is the topology of your neural network layer (ie t
 3. Train your network:
 
 ```go
+func (net *Net) Train(input, target []float64, rate float64) (float64, error)
+
 dist, err := net.Train(input, output, eta, alpha)
 ```
 
-where input is the input vector, output is the expected result to converge to, eta is learning rate. It returns the average error.
+where input is the input vector, output is the expected result to converge to, rate is learning rate. It returns the average error.
 
 4. Ask you network to predict and answer:
 
 ```go
+func (net *Net) Predict(input []float64) ([]float64, error)
+
 res, err := net.Predict(input)
 ```
 

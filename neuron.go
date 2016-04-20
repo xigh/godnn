@@ -46,7 +46,7 @@ func (neuron *Neuron) updateGradient(target float64) {
 	neuron.gradient = delta * SigmoidDerive(neuron.Output)
 }
 
-func (neuron *Neuron) calculateHiddenGradients(nextLayer *Layer) {
+func (neuron *Neuron) deriveGradients(nextLayer *Layer) {
 	sum := 0.0
 	for n := 0; n < len(nextLayer.Neurons) - 1; n += 1 {
 		tmp := &nextLayer.Neurons[n]
@@ -56,13 +56,12 @@ func (neuron *Neuron) calculateHiddenGradients(nextLayer *Layer) {
 	neuron.gradient = sum * SigmoidDerive(neuron.Output)
 }
 
-func (neuron *Neuron) updateInputWeights(prevLayer *Layer, rate, frac float64) {
+func (neuron *Neuron) updateWeight(prevLayer *Layer, rate float64) {
 	for n := range prevLayer.Neurons {
 		tmp := &prevLayer.Neurons[n]
 		conn := &tmp.Conns[neuron.Index]
 
-		Delta := rate * tmp.Output * neuron.gradient +
-			frac * conn.Delta
+		Delta := rate * tmp.Output * neuron.gradient + conn.Delta
 		conn.Delta = Delta
 		conn.Weight += Delta
 	}
