@@ -1,15 +1,34 @@
 # godnn
 Deep Neural Network package written in Go programming Language
 
-![My image](img/rpsls3.jpg)
+Installation
+-----------
 
-# todo
+	go get github.com/syndtr/goleveldb/leveldb
+	
+Documentation
+-----------
+
+This package is very simple:
+
+
+Todo
+-----------
+
+Better doc
 Make it more configurable (threshold, ...)
 Make it more scalable
 Make some benchmarks
 Add more examples (train it with MNIST DATABASE)
 
-# license
+Example
+-----------
+
+![My image](img/rpsls3.jpg)
+
+License
+-----------
+
 Copyright (c) 2016, Philippe Anel
 All rights reserved.
 
