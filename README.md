@@ -11,13 +11,13 @@ Documentation
 
 This package is very simple:
 
-1. Import the package
+* Import the package
 
 ```go
 import "github.com/xigh/godnn"
 ```
 
-2. Create a network instance
+* Create a network instance
 
 ```go
 func Create(topology []uint) (*Net, error)
@@ -25,7 +25,7 @@ func Create(topology []uint) (*Net, error)
 
 where parameter to dnn.Create is the topology of your neural network layer (ie the number of neuron per layer). First layer is the input, last layer is the output.
 
-3. Train your network:
+* Train your network:
 
 ```go
 func (net *Net) Train(input, target []float64, rate float64) (float64, error)
@@ -33,7 +33,7 @@ func (net *Net) Train(input, target []float64, rate float64) (float64, error)
 
 where input is the input vector, target is the expected result to converge to, rate is learning rate. It returns the average error.
 
-4. Ask you network to predict and answer:
+Ask you network to predict and answer:
 
 ```go
 func (net *Net) Predict(input []float64) ([]float64, error)
