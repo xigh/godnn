@@ -38,7 +38,7 @@ Disclaimer
 
 I'm not a AI researcher. I mean I've not studied AI at school, but I often use it at <http://mediawen.com>. This is the reason why I wrote this small [IBM Watson SDK in Go](https://github.com/Mediawen/watson-go-sdk).
 
-I watched the Prof Patrick Henry Winston course at [MIT Open Courseware](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/index.htm) along with Yann Lecun videos here and there (especially the course at [Collège de France](http://www.college-de-france.fr/site/yann-lecun/course-2016-02-12-14h30.htm).
+I watched the Prof Patrick Henry Winston course at [MIT Open Courseware](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/index.htm) along with Yann Lecun videos here and there (especially the course at [Collège de France](http://www.college-de-france.fr/site/yann-lecun/course-2016-02-12-14h30.htm)).
 
 With this DNN package, I want to learn more how DNN works. My goal is to use it inside our tools we develop for STVHub, our subtitling platform...
 
@@ -46,12 +46,19 @@ Todo
 -----------
 
 Testing.
+
 Better doc.
+
 Make it more configurable (threshold function, ...).
+
 Make it more scalable.
+
 Make some benchmarks.
-Add more examples (train it with MNIST DATABASE)
+
+Add more examples (train it with [MNIST DATASET](http://yann.lecun.com/exdb/mnist/))
+
 Try RNN (Recurrent Neural Network) with LSTM (Long short-term memory) architecture.
+
 Learn, learn, study and learn...
 
 Example
