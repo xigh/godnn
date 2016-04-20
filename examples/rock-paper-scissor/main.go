@@ -38,24 +38,27 @@ var (
 )
 
 func eval(a, b int) []float64 {
-	if a == Rock && b == Paper {
+	// paper covers rock
+	if a == Paper && b == Rock {
 		return []float64{ 1, 0 }
 	}
-	if b == Rock && a == Paper {
+	if b == Paper && a == Rock {
 		return []float64{ 0, 1 }
 	}
 
+	// rock cruches scissor
 	if a == Rock && b == Scissors {
 		return []float64{ 1, 0 }
 	}
-	if b == Scissors && a == Rock {
+	if b == Rock && a == Scissors {
 		return []float64{ 0, 1 }
 	}
 
+	// scissors cuts paper
 	if a == Scissors && b == Paper {
 		return []float64{ 1, 0 }
 	}
-	if b == Paper && a == Scissors {
+	if b == Scissors && a == Paper {
 		return []float64{ 0, 1 }
 	}
 
@@ -153,7 +156,7 @@ func main() {
 
 	// -------
 	
-	fmt.Printf("topology: %v", topology)
+	fmt.Printf("topology: %v\n", topology)
 
 	// -------
 	
