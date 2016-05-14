@@ -1,9 +1,11 @@
 package main
 
 import (
-	"github.com/xigh/godnn"
+	// "github.com/xigh/godnn"
+	"../../../godnn"
 	"fmt"
 	"log"
+	"os"
 )
 
 const (
@@ -152,10 +154,10 @@ func train(net *dnn.Net, min float64, max uint64) uint64 {
 	return i
 }
 
-func main() {
+func learnAndSave(name string) error {
 	net, err := dnn.Create(topology)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	// -------
@@ -177,4 +179,48 @@ func main() {
 
 	fmt.Printf("test after training:\n")
 	test(net);
+
+	w, err := os.Create(name)
+	if err != nil {
+		return err
+	}
+	defer w.Close()
+	
+	return net.Save(w)
+}
+
+func loadAndTest(name string) error {
+	r, err := os.Open(name)
+	if err != nil {
+		return err
+	}
+	defer r.Close()
+	
+	net, err := dnn.Load(r)
+	if err != nil {
+		return err
+	}
+
+	// -------
+	
+	fmt.Printf("topology: %v\n", net.Topology())
+
+	// -------
+	
+	fmt.Printf("test before training:\n")
+	test(net)
+
+	return nil
+}
+
+func main() {
+	err := learnAndSave("network.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = loadAndTest("network.json")
+	if err != nil {
+		log.Fatal(err)
+	}
 }

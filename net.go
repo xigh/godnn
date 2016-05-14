@@ -2,6 +2,8 @@ package dnn
 
 import (
 	"fmt"
+	"io"
+	"encoding/json"
 )
 
 type Layer struct {
@@ -35,6 +37,13 @@ func Create(topology []uint) (*Net, error) {
 	return &Net{
 		Layers: layers,
 	}, nil
+}
+
+func Load(r io.Reader) (*Net, error) {
+	dec := json.NewDecoder(r)
+	var net Net
+	err := dec.Decode(&net)
+	return &net, err
 }
 
 func (net *Net) feed(input []float64) (*Layer, error) {
@@ -122,4 +131,17 @@ func (net *Net) Predict(input []float64) ([]float64, error) {
 	}
 	
 	return result, nil
+}
+
+func (net *Net) Save(w io.Writer) error {
+	enc := json.NewEncoder(w)
+	return enc.Encode(net)
+}
+
+func (net *Net) Topology() []uint {
+	var t []uint
+	for l := range net.Layers {
+		t = append(t, uint(len(net.Layers[l].Neurons) - 1))
+	}
+	return t
 }
